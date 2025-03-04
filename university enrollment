@@ -1,0 +1,33 @@
+class CourseFullException extends Exception {
+    public CourseFullException(String message) {
+        super(message);
+    }
+}
+
+class PrerequisiteNotMetException extends Exception {
+    public PrerequisiteNotMetException(String message) {
+        super(message);
+    }
+}
+
+public class UniversityEnrollmentSystem {
+    public static void main(String[] args) {
+        String course = "Advanced Java";
+        boolean isPrerequisiteCompleted = false;
+        boolean isCourseFull = false;
+
+        try {
+            if (isCourseFull) {
+                throw new CourseFullException("Error: The course " + course + " is full.");
+            }
+
+            if (!isPrerequisiteCompleted) {
+                throw new PrerequisiteNotMetException("Error: PrerequisiteNotMetException - Complete Core Java before enrolling in Advanced Java.");
+            }
+
+            System.out.println("Enrollment successful in " + course);
+        } catch (CourseFullException | PrerequisiteNotMetException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+}
